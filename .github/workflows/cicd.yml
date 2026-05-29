@@ -51,7 +51,7 @@ jobs:
           cd Pod10-infrastructure-main
           git config user.email "gwinsetech@gmail.com"
           git config user.name "gwinsetechcloud-ctrl"
-          sed -i "s|REPLACE_ECR_REGISTRY/bank-frontend:.*|${{ vars.ECR_REPO }}/bank-frontend:${IMAGE_TAG}|g" k8s/bank-app/frontend-deployment.yaml
+          sed -i "s|${{ vars.ECR_REPO }}/bank-frontend:.*|${{ vars.ECR_REPO }}/bank-frontend:${IMAGE_TAG}|g" k8s/bank-app/frontend-deployment.yaml
           grep -q "${{ vars.ECR_REPO }}/bank-frontend:${IMAGE_TAG}" k8s/bank-app/frontend-deployment.yaml
           git add k8s/bank-app/frontend-deployment.yaml
           git diff --staged --quiet || git commit -m "ci(frontend): image tag ${IMAGE_TAG}"
