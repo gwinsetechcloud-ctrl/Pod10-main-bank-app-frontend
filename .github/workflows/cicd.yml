@@ -8,7 +8,7 @@ on:
 env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: bank-frontend
-  API_URL: https://bankapi.gwinseapptest.online
+  API_URL: https://bankapi.cohort5pod10.online
 
 jobs:
   build-and-push:
@@ -34,10 +34,8 @@ jobs:
           docker build \
             --build-arg REACT_APP_API_URL=${{ env.API_URL }} \
             -t ${{ vars.ECR_REPO }}/${{ env.ECR_REPOSITORY }}:${IMAGE_TAG} \
-            -t ${{ vars.ECR_REPO }}/${{ env.ECR_REPOSITORY }}:latest \
             .
           docker push ${{ vars.ECR_REPO }}/${{ env.ECR_REPOSITORY }}:${IMAGE_TAG}
-          docker push ${{ vars.ECR_REPO }}/${{ env.ECR_REPOSITORY }}:latest
 
   update-k8s-manifest:
     runs-on: ubuntu-latest
