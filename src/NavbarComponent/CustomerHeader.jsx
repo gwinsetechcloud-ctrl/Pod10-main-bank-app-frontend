@@ -64,41 +64,34 @@ const CustomerHeader = () => {
   };
 
   return (
-    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
-      <li class="nav-item">
-        <div class="nav-link active" aria-current="page">
-          <b className="text-color" onClick={moneyTransfer}>
-            Money Transfer
-          </b>
-          <ToastContainer />
-        </div>
+    <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+      <li className="nav-item">
+        <button type="button" className="nav-link btn btn-link" onClick={moneyTransfer}>
+          Money Transfer
+        </button>
+        <ToastContainer />
       </li>
 
-      <li class="nav-item">
-        <div class="nav-link active" aria-current="page">
-          <b className="text-color" onClick={viewBankAccount}>
-            Bank Account
-          </b>
-          <ToastContainer />
-        </div>
+      <li className="nav-item">
+        <button type="button" className="nav-link btn btn-link" onClick={viewBankAccount}>
+          Bank Account
+        </button>
+        <ToastContainer />
       </li>
 
-      <li class="nav-item">
-        <div class="nav-link active" aria-current="page">
-          <b className="text-color" onClick={handleTransactionHistoryClick}>
-            Transaction History
-          </b>
-        </div>
-      </li>
-
-      <li class="nav-item">
-        <Link
-          to=""
-          class="nav-link active"
-          aria-current="page"
-          onClick={userLogout}
+      <li className="nav-item">
+        <button
+          type="button"
+          className="nav-link btn btn-link"
+          onClick={handleTransactionHistoryClick}
         >
-          <b className="text-color">Logout</b>
+          Transaction History
+        </button>
+      </li>
+
+      <li className="nav-item">
+        <Link to="" className="nav-link" onClick={userLogout}>
+          Logout
         </Link>
         <ToastContainer />
       </li>

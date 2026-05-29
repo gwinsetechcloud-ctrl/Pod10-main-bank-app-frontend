@@ -106,11 +106,11 @@ const UserLoginForm = () => {
   };
 
   return (
-    <div>
-      <div className="mt-2 d-flex aligns-items-center justify-content-center">
+    <div className="pod-form-page">
+      <div className="d-flex align-items-center justify-content-center w-100">
         <div
           className="card form-card border-color custom-bg"
-          style={{ width: "25rem" }}
+          style={{ width: "100%", maxWidth: "26rem" }}
         >
           <div className="card-header bg-color text-center custom-bg-text">
             <h4 className="card-title">User Login</h4>
@@ -162,7 +162,7 @@ const UserLoginForm = () => {
               </div>
               <button
                 type="submit"
-                className="btn bg-color custom-bg-text"
+                className="btn btn-pod-primary w-100"
                 onClick={loginAction}
               >
                 Login

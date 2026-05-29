@@ -1,58 +1,349 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap");
+
+:root {
+  --pod-navy: #0a1628;
+  --pod-navy-light: #132238;
+  --pod-teal: #0d9488;
+  --pod-teal-dark: #0f766e;
+  --pod-gold: #c9a227;
+  --pod-gold-light: #e8c547;
+  --pod-surface: #eef2f7;
+  --pod-card: #ffffff;
+  --pod-text: #1a2b42;
+  --pod-text-muted: #5a6b82;
+  --pod-radius: 12px;
+  --pod-shadow: 0 8px 30px rgba(10, 22, 40, 0.08);
+  --pod-shadow-lg: 0 16px 48px rgba(10, 22, 40, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  background: var(--pod-surface);
+  color: var(--pod-text);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+/* Legacy class aliases — updated palette */
 .custom-bg {
-  background-color: #FDF0D5 ;
+  background-color: var(--pod-card);
 }
 
 .text-color {
-  color: #0c0234;
+  color: var(--pod-text);
 }
 
 .text-color1 {
-  color: #D4AA00;
+  color: var(--pod-gold);
 }
 
 .border-color {
-  border-color: #0c0234;
+  border: 1px solid rgba(10, 22, 40, 0.1);
 }
 
 .custom-bg-text {
-  color: #FDF0D5;
+  color: #fff;
 }
 
 .bg-color {
-  background-color: #0c0234;
+  background: linear-gradient(135deg, var(--pod-teal) 0%, var(--pod-teal-dark) 100%);
+  border: none;
+}
+
+.bg-color:hover {
+  background: linear-gradient(135deg, var(--pod-teal-dark) 0%, #115e59 100%);
+  color: #fff;
 }
 
 .rounded-card {
-  padding: 1.5em .5em .5em;
-  border-radius: 2em;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  padding: 1.5em;
+  border-radius: var(--pod-radius);
+  box-shadow: var(--pod-shadow);
+  background: var(--pod-card);
+  border: 1px solid rgba(10, 22, 40, 0.06);
 }
 
 .form-card {
-  padding: .2em .2em .2em;
-  border-radius: 1em;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  padding: 0;
+  border-radius: var(--pod-radius);
+  box-shadow: var(--pod-shadow-lg);
+  background: var(--pod-card);
+  border: 1px solid rgba(10, 22, 40, 0.08);
+  overflow: hidden;
+}
+
+.form-card .card-header.bg-color {
+  background: linear-gradient(135deg, var(--pod-navy) 0%, var(--pod-navy-light) 100%) !important;
+  border: none;
+  padding: 1.25rem;
 }
 
 .card {
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover .product-card {
   transform: scale(1.02);
+}
+
+/* App shell */
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+}
+
+/* Cohort badge */
+.cohort-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  background: linear-gradient(135deg, var(--pod-gold) 0%, var(--pod-gold-light) 100%);
+  color: var(--pod-navy);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 8px rgba(201, 162, 39, 0.35);
+}
+
+.cohort-badge--hero {
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.cohort-badge--footer {
+  font-size: 0.65rem;
+  background: transparent;
+  color: var(--pod-gold-light);
+  border: 1px solid var(--pod-gold);
+  box-shadow: none;
+}
+
+/* Navbar */
+.pod-navbar {
+  background: linear-gradient(180deg, var(--pod-navy) 0%, var(--pod-navy-light) 100%) !important;
+  box-shadow: 0 4px 24px rgba(10, 22, 40, 0.25);
+  padding: 0.65rem 0;
+}
+
+.pod-navbar .navbar-brand,
+.pod-navbar .nav-link,
+.pod-navbar .text-color {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+.pod-navbar .nav-link:hover {
+  color: var(--pod-gold-light) !important;
+}
+
+.pod-navbar .navbar-brand {
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
+.pod-navbar .navbar-brand i {
+  font-style: normal;
+}
+
+.pod-navbar .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.pod-navbar .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+.pod-navbar .nav-link.btn-link {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: transparent;
+}
+
+.pod-navbar__brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pod-navbar__logo {
+  border-radius: 8px;
+  background: #fff;
+  padding: 2px;
+}
+
+/* Carousel */
+.pod-carousel-wrap {
+  position: relative;
+  border-radius: 0 0 var(--pod-radius) var(--pod-radius);
+  overflow: hidden;
+  box-shadow: var(--pod-shadow-lg);
+}
+
+.pod-carousel-wrap .carousel-item img {
+  max-height: 420px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.pod-carousel-wrap .carousel-indicators [data-bs-target] {
+  background-color: var(--pod-teal);
+}
+
+.pod-carousel-overlay {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+}
+
+/* Home sections */
+.pod-hero {
+  background: linear-gradient(135deg, var(--pod-navy) 0%, #0f2847 50%, var(--pod-navy-light) 100%);
+  color: #fff;
+  padding: 2.5rem 0 2rem;
+  margin-bottom: 0;
+}
+
+.pod-hero h1 {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.pod-hero .lead {
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+
+.pod-section {
+  padding: 3.5rem 0;
+}
+
+.pod-section--alt {
+  background: var(--pod-card);
+}
+
+.pod-section-title {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--pod-navy);
+  margin-bottom: 1rem;
+}
+
+.pod-content-card {
+  background: var(--pod-card);
+  border-radius: var(--pod-radius);
+  padding: 2rem;
+  box-shadow: var(--pod-shadow);
+  border: 1px solid rgba(10, 22, 40, 0.06);
+  height: 100%;
+}
+
+.pod-img-frame {
+  border-radius: var(--pod-radius);
+  overflow: hidden;
+  box-shadow: var(--pod-shadow-lg);
+  border: 3px solid var(--pod-card);
+}
+
+.pod-img-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.btn-pod-primary {
+  background: linear-gradient(135deg, var(--pod-teal) 0%, var(--pod-teal-dark) 100%);
+  color: #fff !important;
+  border: none;
+  padding: 0.65rem 1.5rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-pod-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(13, 148, 136, 0.4);
+  color: #fff !important;
+}
+
+/* Footer */
+.pod-footer {
+  background: var(--pod-navy);
+  color: rgba(255, 255, 255, 0.88);
+  margin-top: auto;
+}
+
+.pod-footer h5 {
+  color: var(--pod-gold-light);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+.pod-footer a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+}
+
+.pod-footer a:hover {
+  color: var(--pod-gold-light);
+}
+
+.pod-footer .text-color {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.pod-footer hr {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Page shells */
+.pod-page {
+  padding: 2.5rem 1rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pod-page-card {
+  background: var(--pod-card);
+  border-radius: var(--pod-radius);
+  padding: 2rem;
+  box-shadow: var(--pod-shadow);
+}
+
+/* Forms page centering */
+.pod-form-page {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(180deg, var(--pod-surface) 0%, #e2e8f0 100%);
+}
+
+.home-image {
+  max-width: 100%;
 }

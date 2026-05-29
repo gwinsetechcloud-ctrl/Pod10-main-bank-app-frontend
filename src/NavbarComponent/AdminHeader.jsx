@@ -27,14 +27,14 @@ const AdminHeader = () => {
   };
 
   return (
-    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
+    <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
       <li className="nav-item">
         <Link
           to="/user/bank/register"
           className="nav-link active"
           aria-current="page"
         >
-          <b className="text-color">Register Bank Manager</b>
+          Register Bank Manager
         </Link>
       </li>
       <li className="nav-item">
@@ -43,7 +43,7 @@ const AdminHeader = () => {
           className="nav-link active"
           aria-current="page"
         >
-          <b className="text-color">Add Bank</b>
+          Add Bank
         </Link>
       </li>
       <li className="nav-item">
@@ -52,7 +52,7 @@ const AdminHeader = () => {
           className="nav-link active"
           aria-current="page"
         >
-          <b className="text-color">View Banks</b>
+          View Banks
         </Link>
       </li>
       <li className="nav-item">
@@ -61,7 +61,7 @@ const AdminHeader = () => {
           className="nav-link active"
           aria-current="page"
         >
-          <b className="text-color">Bank Managers</b>
+          Bank Managers
         </Link>
       </li>
 
@@ -71,7 +71,7 @@ const AdminHeader = () => {
           className="nav-link active"
           aria-current="page"
         >
-          <b className="text-color">All Customers</b>
+          All Customers
         </Link>
       </li>
 
@@ -81,7 +81,7 @@ const AdminHeader = () => {
           className="nav-link active"
           aria-current="page"
         >
-          <b className="text-color">All Bank Accounts</b>
+          All Bank Accounts
         </Link>
       </li>
 
@@ -91,18 +91,17 @@ const AdminHeader = () => {
           className="nav-link active"
           aria-current="page"
         >
-          <b className="text-color">All Bank Transactions</b>
+          All Bank Transactions
         </Link>
       </li>
 
-      <li class="nav-item">
+      <li className="nav-item">
         <Link
           to=""
-          class="nav-link active"
-          aria-current="page"
+          className="nav-link"
           onClick={adminLogout}
         >
-          <b className="text-color">Logout</b>
+          Logout
         </Link>
         <ToastContainer />
       </li>

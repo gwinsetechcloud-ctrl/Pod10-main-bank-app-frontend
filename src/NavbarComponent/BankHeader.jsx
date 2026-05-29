@@ -27,14 +27,14 @@ const BankHeader = () => {
   };
 
   return (
-    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
+    <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
       <li className="nav-item">
         <Link
           to="/user/customer/register"
           className="nav-link active"
           aria-current="page"
         >
-          <b className="text-color">Register Customer</b>
+          Register Customer
         </Link>
       </li>
 
@@ -44,7 +44,7 @@ const BankHeader = () => {
           className="nav-link active"
           aria-current="page"
         >
-          <b className="text-color">Bank Accounts </b>
+          Bank Accounts
         </Link>
       </li>
 
@@ -54,7 +54,7 @@ const BankHeader = () => {
           className="nav-link active"
           aria-current="page"
         >
-          <b className="text-color">Bank Customers</b>
+          Bank Customers
         </Link>
       </li>
 
@@ -64,18 +64,13 @@ const BankHeader = () => {
           className="nav-link active"
           aria-current="page"
         >
-          <b className="text-color">Customer Transactions</b>
+          Customer Transactions
         </Link>
       </li>
 
-      <li class="nav-item">
-        <Link
-          to=""
-          class="nav-link active"
-          aria-current="page"
-          onClick={bankLogout}
-        >
-          <b className="text-color">Logout</b>
+      <li className="nav-item">
+        <Link to="" className="nav-link" onClick={bankLogout}>
+          Logout
         </Link>
         <ToastContainer />
       </li>
