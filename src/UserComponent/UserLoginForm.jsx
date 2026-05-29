@@ -113,7 +113,8 @@ const UserLoginForm = () => {
           style={{ width: "100%", maxWidth: "26rem" }}
         >
           <div className="card-header bg-color text-center custom-bg-text">
-            <h4 className="card-title">User Login</h4>
+            <h4 className="card-title mb-0">Secure sign in</h4>
+            <p className="mb-0 mt-1 small opacity-75">Online Banking System</p>
           </div>
           <div className="card-body">
             <form>

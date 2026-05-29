@@ -9,23 +9,29 @@ const HomePage = () => {
   return (
     <div>
       <section className="pod-hero text-center">
-        <div className="container">
+        <div className="container-xl">
           <CohortBadge variant="hero" />
           <h1>Welcome to Online Banking System</h1>
           <p className="lead">
-            Secure, modern banking built for Pod 10 — manage accounts, transfers,
-            and transactions with confidence.
+            Enterprise-grade digital banking for secure transactions, account
+            management, and institutional financial operations.
           </p>
+          <div className="pod-hero__trust">
+            <span className="pod-hero__trust-item">Bank-grade security</span>
+            <span className="pod-hero__trust-item">Real-time transactions</span>
+            <span className="pod-hero__trust-item">Role-based access</span>
+          </div>
         </div>
       </section>
 
       <Carousel />
 
       <section className="pod-section">
-        <div className="container">
-          <div className="row align-items-center g-4">
+        <div className="container-xl">
+          <div className="row align-items-center g-5">
             <div className="col-lg-7">
               <div className="pod-content-card text-color">
+                <span className="pod-eyebrow">Platform overview</span>
                 <h2 className="pod-section-title">Your financial journey, simplified</h2>
                 <p>
                   Welcome to our cutting-edge Online Banking System, where financial
@@ -58,10 +64,11 @@ const HomePage = () => {
       </section>
 
       <section className="pod-section pod-section--alt">
-        <div className="container">
-          <div className="row align-items-center g-4 flex-lg-row-reverse">
+        <div className="container-xl">
+          <div className="row align-items-center g-5 flex-lg-row-reverse">
             <div className="col-lg-7">
               <div className="pod-content-card text-color">
+                <span className="pod-eyebrow">Capabilities</span>
                 <h2 className="pod-section-title">
                   Experience Effortless Financial Management
                 </h2>

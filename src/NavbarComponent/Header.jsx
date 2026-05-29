@@ -6,19 +6,22 @@ import CohortBadge from "../components/CohortBadge";
 const Header = () => {
   return (
     <nav className="navbar navbar-expand-lg pod-navbar sticky-top">
-      <div className="container-fluid px-3 px-lg-4">
+      <div className="container-xl px-3 px-lg-4">
         <div className="pod-navbar__brand-wrap">
           <img
             src={logo}
-            width="40"
-            height="40"
+            width="36"
+            height="36"
             className="pod-navbar__logo d-inline-block"
             alt="Online Banking"
           />
-          <Link to="/" className="navbar-brand mb-0">
-            Online Banking System
+          <Link to="/" className="navbar-brand mb-0 text-decoration-none">
+            <div className="pod-brand-block">
+              <span className="pod-brand-block__title">Online Banking System</span>
+              <span className="pod-brand-block__sub">Secure digital banking</span>
+            </div>
           </Link>
-          <CohortBadge />
+          <CohortBadge variant="nav" className="d-none d-md-inline-flex" />
         </div>
 
         <button
@@ -34,7 +37,7 @@ const Header = () => {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
             <li className="nav-item">
               <Link to="/about" className="nav-link">
                 About Us

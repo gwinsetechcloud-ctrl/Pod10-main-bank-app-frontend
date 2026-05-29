@@ -4,7 +4,7 @@ import CohortBadge from "../components/CohortBadge";
 const Footer = () => {
   return (
     <footer className="pod-footer">
-      <div className="container py-5">
+      <div className="container-xl py-5">
         <div className="row g-4">
           <div className="col-lg-4 col-md-6">
             <CohortBadge variant="footer" className="mb-3" />
@@ -17,7 +17,7 @@ const Footer = () => {
           </div>
 
           <div className="col-lg-2 col-md-6">
-            <h5>About us</h5>
+            <h5>Company</h5>
             <ul className="list-unstyled mb-0">
               <li><Link to="/about">About</Link></li>
               <li><Link to="/contact">Contact</Link></li>
@@ -25,9 +25,9 @@ const Footer = () => {
           </div>
 
           <div className="col-lg-2 col-md-6">
-            <h5>Contact us</h5>
+            <h5>Support</h5>
             <ul className="list-unstyled mb-0">
-              <li><Link to="/contact">Get in touch</Link></li>
+              <li><Link to="/contact">Help centre</Link></li>
             </ul>
           </div>
 
@@ -39,27 +39,24 @@ const Footer = () => {
           </div>
 
           <div className="col-lg-2 col-md-6">
-            <h5>Links</h5>
+            <h5>Access</h5>
             <ul className="list-unstyled mb-0">
-              <li><Link to="/user/login">Login</Link></li>
+              <li><Link to="/user/login">Client login</Link></li>
             </ul>
           </div>
         </div>
 
         <hr className="my-4" />
 
-        <div className="text-center">
-          <p className="mb-3">
-            <span className="me-3">Ready to bank smarter?</span>
-            <Link to="/user/login">
-              <button type="button" className="btn btn-pod-primary btn-sm">
-                Log in
-              </button>
-            </Link>
+        <div className="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+          <p className="pod-footer__bottom mb-0">
+            © {new Date().getFullYear()} Online Banking System. All rights reserved.
           </p>
-          <p className="mb-0 small opacity-75">
-            © {new Date().getFullYear()} Online Banking System · COHORT-5 POD-10
-          </p>
+          <Link to="/user/login">
+            <button type="button" className="btn btn-pod-primary btn-sm">
+              Secure sign in
+            </button>
+          </Link>
         </div>
       </div>
     </footer>
