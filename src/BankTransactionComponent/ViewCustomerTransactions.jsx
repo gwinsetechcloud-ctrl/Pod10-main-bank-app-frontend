@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../config/api";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -29,7 +30,7 @@ const ViewCustomerTransactions = () => {
 
   const retrieveAllTransactions = async () => {
     const response = await axios.get(
-      "https://bankapi.cloudwitches.online/api/bank/transaction/history?userId=" +
+      `${API_BASE_URL}/api/bank/transaction/history?userId=` +
         customer.id,
       {
         headers: {

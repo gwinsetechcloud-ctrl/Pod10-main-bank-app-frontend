@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../config/api";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,7 +24,7 @@ const ViewBankAccounts = () => {
 
   const retrieveAllAccounts = async () => {
     const response = await axios.get(
-      "https://bankapi.cloudwitches.online/api/bank/account/fetch/bankwise?bankId=" +
+      `${API_BASE_URL}/api/bank/account/fetch/bankwise?bankId=` +
         bank.bank.id,
       {
         headers: {
@@ -37,7 +38,7 @@ const ViewBankAccounts = () => {
 
   const retrieveAllAccountsByBankAccount = async () => {
     const response = await axios.get(
-      "https://bankapi.cloudwitches.online/api/bank/account/search?bankId=" +
+      `${API_BASE_URL}/api/bank/account/search?bankId=` +
         bank.bank.id +
         "&accountNumber=" +
         accountNumber,
@@ -89,7 +90,7 @@ const ViewBankAccounts = () => {
     updateBankAccountStatusRequest.accountId = accountId;
     updateBankAccountStatusRequest.status = "Open";
 
-    fetch("https://bankapi.cloudwitches.online/api/bank/account/update/status", {
+    fetch(`${API_BASE_URL}/api/bank/account/update/status`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -157,7 +158,7 @@ const ViewBankAccounts = () => {
     updateBankAccountStatusRequest.accountId = accountId;
     updateBankAccountStatusRequest.status = "Lock";
 
-    fetch("https://bankapi.cloudwitches.online/api/bank/account/update/status", {
+    fetch(`${API_BASE_URL}/api/bank/account/update/status`, {
       method: "POST",
       headers: {
         Accept: "application/json",

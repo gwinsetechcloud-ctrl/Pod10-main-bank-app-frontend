@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../config/api";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -22,7 +23,7 @@ const ViewAllBankAccounts = () => {
 
   const retrieveAllAccounts = async () => {
     const response = await axios.get(
-      "https://bankapi.cloudwitches.online/api/bank/account/fetch/all",
+      `${API_BASE_URL}/api/bank/account/fetch/all`,
       {
         headers: {
           Authorization: "Bearer " + admin_jwtToken, // Replace with your actual JWT token
@@ -35,7 +36,7 @@ const ViewAllBankAccounts = () => {
 
   const retrieveAllAccountsByBankAccount = async () => {
     const response = await axios.get(
-      "https://bankapi.cloudwitches.online/api/bank/account/search/all?accountNumber=" +
+      `${API_BASE_URL}/api/bank/account/search/all?accountNumber=` +
         accountNumber,
       {
         headers: {
@@ -85,7 +86,7 @@ const ViewAllBankAccounts = () => {
     updateBankAccountStatusRequest.accountId = accountId;
     updateBankAccountStatusRequest.status = "Open";
 
-    fetch("https://bankapi.cloudwitches.online/api/bank/account/update/status", {
+    fetch(`${API_BASE_URL}/api/bank/account/update/status`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -152,7 +153,7 @@ const ViewAllBankAccounts = () => {
     updateBankAccountStatusRequest.accountId = accountId;
     updateBankAccountStatusRequest.status = "Lock";
 
-    fetch("https://bankapi.cloudwitches.online/api/bank/account/update/status", {
+    fetch(`${API_BASE_URL}/api/bank/account/update/status`, {
       method: "POST",
       headers: {
         Accept: "application/json",

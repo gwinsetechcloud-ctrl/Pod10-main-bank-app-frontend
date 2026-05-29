@@ -1,74 +1,60 @@
-
 name: Bank Frontend Pipeline
 
 on:
   push:
     branches:
       - main
-  # pull_request:
-  #   branches:
-  #     - cicd
+
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: bank-frontend
+  API_URL: https://bankapi.gwinseapptest.online
 
 jobs:
-  Continues-Integration_build_and_push:
+  build-and-push:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
 
-    - name: Log in to awscli
-      uses: aws-actions/configure-aws-credentials@v3
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
+      - name: Log in to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
 
+      - name: Build and push Docker image
+        env:
+          IMAGE_TAG: ${{ github.run_number }}
+        run: |
+          docker build \
+            --build-arg REACT_APP_API_URL=${{ env.API_URL }} \
+            -t ${{ vars.ECR_REPO }}/${{ env.ECR_REPOSITORY }}:${IMAGE_TAG} \
+            -t ${{ vars.ECR_REPO }}/${{ env.ECR_REPOSITORY }}:latest \
+            .
+          docker push ${{ vars.ECR_REPO }}/${{ env.ECR_REPOSITORY }}:${IMAGE_TAG}
+          docker push ${{ vars.ECR_REPO }}/${{ env.ECR_REPOSITORY }}:latest
 
-    - name: Build container image
-      run: docker build -t bank-app-frontend:latest .
-
-    - name: Log in to ECR with short-lived credentials
-      run: |
-        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ vars.ECR_REPO }}
-  
-    - name: Tag Docker image
-      run: docker tag bank-app-frontend:latest ${{ vars.ECR_REPO }}/bank-frontend:${{ github.run_number }}
-    
-    - name: Push image to ECR
-      run: docker push ${{ vars.ECR_REPO }}/bank-frontend:${{ github.run_number }}
-
-
-    - name: Clean up Docker image locally
-      run: |
-        docker rmi bank-app-frontend:latest
-        docker rmi ${{ vars.ECR_REPO }}/bank-frontend:${{ github.run_number }}
-
-    - name: Clean up GitHub repo on runner
-      run: rm -rf ./*
-
-
-  
-  Continues-Update_k8s_manifest:
+  update-k8s-manifest:
     runs-on: ubuntu-latest
-    needs: Continues-Integration_build_and_push
+    needs: build-and-push
     steps:
-    - name: Checkout repository.
-      env:
+      - name: Update image tag in infrastructure manifests
+        env:
           GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
           GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
-      run: |
-         git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/digitalwitchdemo/kubernetes-manifest.git
-         
-         cd kubernetes-manifest
-         git config --global user.email "chukwunonsosmartagbawo@gmail.com"
-         git config --global user.name "smartcloud2023"
-
-         sed -i "s+${{ vars.ECR_REPO }}/bank-frontend:.*+${{ vars.ECR_REPO }}/bank-frontend:${{ github.run_number }}+g" ./bank-project/frontend.yaml
-
-         cat ./bank-project/frontend.yaml | grep -q "${{ vars.ECR_REPO }}/bank-frontend:${{ github.run_number }}"
-
-         git add bank-project/frontend.yaml
-         git commit -m "Update frontend image to version ${{ github.run_number }}"
-         git push origin main
+          IMAGE_TAG: ${{ github.run_number }}
+        run: |
+          git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/gwinsetechcloud-ctrl/Pod10-infrastructure-main.git
+          cd Pod10-infrastructure-main
+          git config user.email "gwinsetech@gmail.com"
+          git config user.name "gwinsetechcloud-ctrl"
+          sed -i "s|REPLACE_ECR_REGISTRY/bank-frontend:.*|${{ vars.ECR_REPO }}/bank-frontend:${IMAGE_TAG}|g" k8s/bank-app/frontend-deployment.yaml
+          grep -q "${{ vars.ECR_REPO }}/bank-frontend:${IMAGE_TAG}" k8s/bank-app/frontend-deployment.yaml
+          git add k8s/bank-app/frontend-deployment.yaml
+          git diff --staged --quiet || git commit -m "ci(frontend): image tag ${IMAGE_TAG}"
+          git push origin main

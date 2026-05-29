@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../config/api";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,7 +14,7 @@ const UserLoginForm = () => {
   };
 
   const loginAction = (e) => {
-    fetch("https://bankapi.cloudwitches.online/api/user/login", {
+    fetch(`${API_BASE_URL}/api/user/login`, {
       method: "POST",
       headers: {
         Accept: "application/json",

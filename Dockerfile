@@ -1,17 +1,18 @@
-FROM node:18-alpine
+# Build React app with API URL baked in at build time
+FROM node:18-alpine AS build
+WORKDIR /app
 
+ARG REACT_APP_API_URL=https://bankapi.gwinseapptest.online
+ENV REACT_APP_API_URL=$REACT_APP_API_URL
 
-
+COPY package.json package-lock.json ./
+RUN npm ci
 COPY . .
+RUN npm run build
 
-RUN npm install --save-dev @babel/plugin-proposal-private-property-in-object
-RUN npm install --save react react-dom @types/react @types/react-dom
-RUN npm install react-scripts@3.0.1  --save
-RUN npm install
-
-# Attempt to fix vulnerabilities, but continue if it fails
-RUN npm audit fix --force || echo "Continuing despite npm audit fix failures"
-
-EXPOSE 3000
-
-CMD ["npm", "start"]
+# Serve static build with nginx
+FROM nginx:stable-alpine
+COPY --from=build /app/build /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

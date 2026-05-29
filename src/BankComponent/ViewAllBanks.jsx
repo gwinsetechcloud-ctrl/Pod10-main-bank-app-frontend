@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../config/api";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,7 +13,7 @@ const ViewAllBanks = () => {
 
   const retrieveAllBanks = async () => {
     const response = await axios.get(
-      "https://bankapi.cloudwitches.online/api/bank/fetch/all",
+      `${API_BASE_URL}/api/bank/fetch/all`,
       {
         headers: {
           Authorization: "Bearer " + admin_jwtToken, // Replace with your actual JWT token

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../config/api";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -44,7 +45,7 @@ const ViewBankAccount = () => {
 
   const retrieveBankAccount = async () => {
     const response = await axios.get(
-      "https://bankapi.cloudwitches.online/api/bank/account/fetch/user?userId=" + customer.id,
+      `${API_BASE_URL}/api/bank/account/fetch/user?userId=` + customer.id,
       {
         headers: {
           Authorization: "Bearer " + jwtToken, // Replace with your actual JWT token
@@ -82,7 +83,7 @@ const ViewBankAccount = () => {
     e.preventDefault();
 
     fetch(
-      "https://bankapi.cloudwitches.online/api/bank/transaction/statement/download?accountId=" +
+      `${API_BASE_URL}/api/bank/transaction/statement/download?accountId=` +
         bankAccount.id +
         "&startTime=" +
         convertToEpochTime(statementDownloadRequest.startDate) +
@@ -121,7 +122,7 @@ const ViewBankAccount = () => {
   const depositAmount = (e) => {
     console.log("Amount :" + amountToDeposit);
 
-    fetch("https://bankapi.cloudwitches.online/api/bank/transaction/deposit", {
+    fetch(`${API_BASE_URL}/api/bank/transaction/deposit`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -191,7 +192,7 @@ const ViewBankAccount = () => {
 
   const withdrawAmount = (e) => {
     console.log("Amount to withdraw :" + amountToWithdraw);
-    fetch("https://bankapi.cloudwitches.online/api/bank/transaction/withdraw", {
+    fetch(`${API_BASE_URL}/api/bank/transaction/withdraw`, {
       method: "POST",
       headers: {
         Accept: "application/json",
