@@ -93,9 +93,11 @@
 
 /* Header */
 .splash-header {
+  position: relative;
+  z-index: 2;
   text-align: center;
   flex-shrink: 0;
-  margin-bottom: clamp(0.5rem, 1.5vh, 1.5rem);
+  margin-bottom: clamp(0.75rem, 2vh, 1.25rem);
 }
 
 .splash-header .cohort-badge--hero {
@@ -125,28 +127,31 @@
 /* Device showcase */
 .splash-devices {
   position: relative;
+  z-index: 1;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   flex-shrink: 1;
   min-height: 0;
   max-height: min(32vh, 280px);
-  margin-bottom: clamp(0.5rem, 1.5vh, 1.25rem);
+  margin-top: clamp(0.75rem, 2.5vh, 1.5rem);
+  margin-bottom: clamp(0.75rem, 2vh, 1.5rem);
+  padding-top: clamp(0.5rem, 1.5vh, 1rem);
   perspective: 1200px;
-  transform: scale(0.52);
+  transform: translateY(clamp(8px, 2vh, 20px)) scale(0.52);
   transform-origin: center bottom;
 }
 
 @media (min-width: 640px) {
   .splash-devices {
-    transform: scale(0.62);
+    transform: translateY(clamp(10px, 2.5vh, 24px)) scale(0.62);
     max-height: min(34vh, 300px);
   }
 }
 
 @media (min-width: 1024px) {
   .splash-devices {
-    transform: scale(0.78);
+    transform: translateY(clamp(12px, 3vh, 28px)) scale(0.78);
     max-height: min(36vh, 320px);
   }
 }
@@ -241,11 +246,11 @@
 
 @keyframes splash-device-float {
   0%, 100% { transform: translateY(0) rotateY(-2deg); }
-  50% { transform: translateY(-10px) rotateY(2deg); }
+  50% { transform: translateY(-4px) rotateY(2deg); }
 }
 
 .splash-device:hover {
-  transform: translateY(-6px) scale(1.02);
+  transform: translateY(-2px) scale(1.02);
   z-index: 4;
 }
 
@@ -652,7 +657,8 @@
   }
 
   .splash-devices {
-    transform: scale(0.45);
+    transform: translateY(16px) scale(0.45);
     max-height: 24vh;
+    margin-top: 1rem;
   }
 }
