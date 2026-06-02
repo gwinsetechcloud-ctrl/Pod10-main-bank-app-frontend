@@ -3,7 +3,10 @@
 }
 
 .app-layout--splash {
-  min-height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
+  min-height: 100dvh;
+  overflow: hidden;
 }
 
 .app-main--splash {
@@ -13,10 +16,4 @@
   overflow: hidden;
   height: 100dvh;
   max-height: 100dvh;
-}
-
-.app-layout--splash {
-  height: 100dvh;
-  max-height: 100dvh;
-  overflow: hidden;
 }

@@ -3,10 +3,26 @@ import CohortBadge from "../components/CohortBadge";
 import "./SplashPage.css";
 
 const features = [
-  { icon: "🔒", title: "Secure", desc: "Role-based access" },
-  { icon: "⚡", title: "Real-time", desc: "Instant transfers" },
-  { icon: "📊", title: "Accounts", desc: "Balances & statements" },
-  { icon: "👥", title: "Multi-role", desc: "Customer to admin" },
+  {
+    icon: "🔒",
+    title: "Bank-grade security",
+    desc: "Encrypted sessions and role-based access for every user type.",
+  },
+  {
+    icon: "⚡",
+    title: "Real-time transactions",
+    desc: "Transfers, deposits, and withdrawals with instant visibility.",
+  },
+  {
+    icon: "📊",
+    title: "Smart account control",
+    desc: "Statements, balances, and fund transfers in one dashboard.",
+  },
+  {
+    icon: "👥",
+    title: "Multi-role platform",
+    desc: "Customers, bank managers, and admins — each with tailored tools.",
+  },
 ];
 
 const DevicePhone = () => (
@@ -114,48 +130,49 @@ const SplashPage = () => {
       <div className="splash-page__inner">
         <header className="splash-header splash-animate splash-animate--1">
           <CohortBadge variant="hero" />
-          <h1 className="splash-header__title">Online Banking System</h1>
+          <h1 className="splash-header__title">
+            Online Banking System
+          </h1>
           <p className="splash-header__tagline">
-            Secure banking on phone, tablet &amp; desktop — COHORT-5 POD-10
+            Your money. Your devices. One secure platform — built for COHORT-5 POD-10.
           </p>
         </header>
 
-        <div className="splash-body splash-animate splash-animate--2">
-          <section
-            className="splash-devices"
-            aria-label="App preview on mobile, tablet, and desktop"
-          >
-            <DeviceDesktop />
-            <DeviceTablet />
-            <DevicePhone />
-          </section>
+        <section
+          className="splash-devices splash-animate splash-animate--2"
+          aria-label="App preview on mobile, tablet, and desktop"
+        >
+          <DeviceDesktop />
+          <DeviceTablet />
+          <DevicePhone />
+        </section>
 
-          <section className="splash-features" aria-label="Platform features">
-            <h2 className="splash-features__heading">Bank with confidence</h2>
-            <div className="splash-features__grid">
-              {features.map((f, i) => (
-                <article
-                  key={f.title}
-                  className="splash-feature-card"
-                  style={{ animationDelay: `${0.08 * i}s` }}
-                >
-                  <span className="splash-feature-card__icon" aria-hidden="true">
-                    {f.icon}
-                  </span>
-                  <div className="splash-feature-card__text">
-                    <h3>{f.title}</h3>
-                    <p>{f.desc}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
-        </div>
+        <section className="splash-features splash-animate splash-animate--3">
+          <h2 className="splash-features__heading">Everything you need to bank with confidence</h2>
+          <div className="splash-features__grid">
+            {features.map((f, i) => (
+              <article
+                key={f.title}
+                className="splash-feature-card"
+                style={{ animationDelay: `${0.1 * i}s` }}
+              >
+                <span className="splash-feature-card__icon" aria-hidden="true">
+                  {f.icon}
+                </span>
+                <h3>{f.title}</h3>
+                <p>{f.desc}</p>
+              </article>
+            ))}
+          </div>
+        </section>
 
-        <footer className="splash-cta splash-animate splash-animate--3">
+        <footer className="splash-cta splash-animate splash-animate--4">
+          <p className="splash-cta__hint">
+            Available on phone, tablet, and desktop — same secure experience everywhere.
+          </p>
           <Link to="/home" className="splash-cta__btn">
-            <span>Continue</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <span>Continue to platform</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path
                 d="M5 12h14M13 6l6 6-6 6"
                 stroke="currentColor"
@@ -166,7 +183,7 @@ const SplashPage = () => {
             </svg>
           </Link>
           <Link to="/home" className="splash-cta__skip">
-            Skip
+            Skip intro
           </Link>
         </footer>
       </div>
