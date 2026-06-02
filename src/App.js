@@ -1,9 +1,10 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import AboutUs from "./page/AboutUs";
 import ContactUs from "./page/ContactUs";
 import Header from "./NavbarComponent/Header";
 import HomePage from "./page/HomePage";
+import SplashPage from "./page/SplashPage";
 import UserRegister from "./UserComponent/UserRegister";
 import UserLoginForm from "./UserComponent/UserLoginForm";
 import AdminRegisterForm from "./UserComponent/AdminRegisterForm";
@@ -22,12 +23,15 @@ import ViewAllBankTransactions from "./BankTransactionComponent/ViewAllBankTrans
 import CustomerAccountFundTransfer from "./BankTransactionComponent/CustomerAccountFundTransfer";
 
 function App() {
+  const location = useLocation();
+  const isSplash = location.pathname === "/";
+
   return (
-    <div className="app-layout">
-      <Header />
-      <main className="app-main">
+    <div className={`app-layout ${isSplash ? "app-layout--splash" : ""}`}>
+      {!isSplash && <Header />}
+      <main className={`app-main ${isSplash ? "app-main--splash" : ""}`}>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<SplashPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/home/all/hotel/location" element={<HomePage />} />
           <Route path="contact" element={<ContactUs />} />

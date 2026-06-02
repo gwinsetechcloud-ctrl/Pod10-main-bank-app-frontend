@@ -15,7 +15,7 @@ const Header = () => {
             className="pod-navbar__logo d-inline-block"
             alt="Online Banking"
           />
-          <Link to="/" className="navbar-brand mb-0 text-decoration-none">
+          <Link to="/home" className="navbar-brand mb-0 text-decoration-none">
             <div className="pod-brand-block">
               <span className="pod-brand-block__title">Online Banking System</span>
               <span className="pod-brand-block__sub">Secure digital banking</span>
